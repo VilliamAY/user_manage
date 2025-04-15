@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台登录/注册</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<!-- 登录页面 -->
+<div id="login-page" class="hidden bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">后台登录</h1>
+    <form id="login-form" method="post">
+        <!-- 移除了action属性，使用JavaScript处理提交 -->
+        <input type="hidden" name="action" value="login">
+        <!-- 用户名输入 -->
+        <div class="mb-4">
+            <label for="username" class="block text-sm font-medium text-gray-700">用户名</label>
+            <input type="text" id="username" name="username" placeholder="请输入用户名"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                   required />
+        </div>
+
+        <!-- 密码输入 -->
+        <div class="mb-6">
+            <label for="password" class="block text-sm font-medium text-gray-700">密码</label>
+            <input type="password" id="password" name="password" placeholder="请输入密码"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                   required />
+        </div>
+
+        <!-- 登录按钮 -->
+        <button type="submit"
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            登录
+        </button>
+
+        <!-- 忘记密码链接 -->
+        <div class="mt-4 text-center">
+            <a href="#" class="text-sm text-blue-600 hover:text-blue-500">忘记密码？</a>
+        </div>
+
+        <!-- 注册链接 -->
+        <div class="mt-4 text-center">
+            <a href="#" id="to-register" class="text-sm text-blue-600 hover:text-blue-500">没有账号？去注册</a>
+        </div>
+    </form>
+</div>
+
+<!-- 注册页面 -->
+<div id="register-page" class="hidden bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">注册账号</h1>
+    <form id="register-form" method="post">
+        <input type="hidden" name="action" value="register">
+        <!-- 用户名输入 -->
+        <div class="mb-4">
+            <label for="reg-username" class="block text-sm font-medium text-gray-700">用户名</label>
+            <input type="text" id="reg-username" name="username" placeholder="请输入用户名"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                   required />
+        </div>
+
+        <!-- 邮箱输入 -->
+        <div class="mb-4">
+            <label for="reg-email" class="block text-sm font-medium text-gray-700">邮箱</label>
+            <input type="email" id="reg-email" name="email" placeholder="请输入邮箱"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                   required />
+        </div>
+
+        <!-- 密码输入 -->
+        <div class="mb-4">
+            <label for="reg-password" class="block text-sm font-medium text-gray-700">密码</label>
+            <input type="password" id="reg-password" name="password" placeholder="请输入密码"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                   required />
+        </div>
+
+        <!-- 确认密码输入 -->
+        <div class="mb-4">
+            <label for="reg-confirm-password" class="block text-sm font-medium text-gray-700">确认密码</label>
+            <input type="password" id="reg-confirm-password" name="confirm-password" placeholder="请再次输入密码"
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                   required />
+        </div>
+
+        <!-- 注册按钮 -->
+        <button type="submit"
+                class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            注册
+        </button>
+
+        <!-- 返回登录链接 -->
+        <div class="mt-4 text-center">
+            <a href="#" id="to-login" class="text-sm text-blue-600 hover:text-blue-500">已有账号？去登录</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    // 页面切换逻辑
+    const loginPage = document.getElementById('login-page');
+    const registerPage = document.getElementById('register-page');
+    const toRegisterLink = document.getElementById('to-register');
+    const toLoginLink = document.getElementById('to-login');
+
+    // 默认显示登录页面
+    loginPage.classList.remove('hidden');
+
+    // 点击"去注册"链接
+    toRegisterLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        loginPage.classList.add('hidden');
+        registerPage.classList.remove('hidden');
+    });
+
+    // 点击"去登录"链接
+    toLoginLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        registerPage.classList.add('hidden');
+        loginPage.classList.remove('hidden');
+    });
+
+    // 处理登录表单提交
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // 从 JSON 响应中获取重定向路径
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                } else {
+                    window.location.href = '/index';
+                }
+            } else {
+                // 确保这里显示的是后端返回的 message
+                alert(data.message || '登录失败');
+            }
+        } catch (error) {
+            alert('登录请求失败，请重试');
+            console.error('登录错误:', error);
+        }
+    });
+
+    // 处理注册表单提交
+    document.getElementById('register-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('/register', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                alert(data.message || '注册成功');
+                // 自动跳转到登录页面
+                setTimeout(() => {
+                    registerPage.classList.add('hidden');
+                    loginPage.classList.remove('hidden');
+                }, 500);
+            } else {
+                alert(data.message || '注册失败');
+            }
+        } catch (error) {
+            alert('注册请求失败，请重试');
+            console.error('注册错误:', error);
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>后台管理系统</title>
+ <script src="https://cdn.tailwindcss.com"></script>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+ <script src="https://unpkg.com/feather-icons"></script>
+ <style>
+  ::-webkit-scrollbar {
+   width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+   background: #f1f5f9;
+  }
+
+  ::-webkit-scrollbar-thumb {
+   background: #cbd5e1;
+   border-radius: 4px;
+  }
+ </style>
+</head>
+
+<body class="bg-gray-100">
+<aside class="bg-gray-800 text-white w-64 fixed h-full p-4 overflow-y-auto">
+ <div class="mb-8">
+  <h1 class="text-xl font-bold">后台管理系统</h1>
+  <p class="text-gray-400 text-sm mt-1">v2.1.0</p>
+ </div>
+ <nav>
+  <ul class="space-y-2">
+   <li><a href="/index" class="flex items-center p-2 hover:bg-gray-700 rounded"><i data-feather="home" class="w-4 h-4 mr-2"></i> 首页概览</a></li>
+   <li><a href="/userList" class="flex items-center p-2 hover:bg-gray-700 rounded"><i data-feather="users" class="w-4 h-4 mr-2"></i> 用户管理</a></li>
+  </ul>
+ </nav>
+</aside>
+
+<header class="ml-64 fixed w-[calc(100%-16rem)] bg-white shadow-sm z-10">
+ <div class="flex justify-between items-center px-8 py-4">
+  <h2 class="text-xl font-bold">用户管理</h2>
+  <div class="flex items-center gap-4">
+   <button class="p-2 hover:bg-gray-100 rounded-full"><i data-feather="bell"></i></button>
+   <div class="flex items-center gap-2">
+    <img src="../static/1.jpg" class="w-8 h-8 rounded-full">
+    <button onclick="logout()" class="text-red-600 hover:text-red-700 flex items-center gap-1">
+     <i data-feather="log-out" class="w-5 h-5"></i><span class="hidden sm:inline">退出系统</span>
+    </button>
+   </div>
+  </div>
+ </div>
+</header>
+
+<main class="ml-64 pt-20 p-8" id="mainContent">
+ <div class="space-y-6">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+   <div class="bg-white p-6 rounded-xl shadow">
+    <div class="flex justify-between items-center">
+     <div>
+      <p class="text-gray-500 text-sm">注册用户</p>
+      <p class="text-3xl font-bold mt-2">{{.TotalUsers}}</p>
+     </div>
+     <div class="bg-blue-100 p-3 rounded-full">
+      <i data-feather="user-plus" class="w-6 h-6 text-blue-600"></i>
+     </div>
+    </div>
+    <div class="mt-4 text-sm">
+     <span class="text-green-500">↑ {{.UserGrowthRate}}%</span> 上月增长
+    </div>
+   </div>
+   <div class="bg-white p-6 rounded-xl shadow">
+    <div class="flex justify-between items-center">
+     <div>
+      <p class="text-gray-500 text-sm">本月访问</p>
+      <p class="text-3xl font-bold mt-2">{{.MonthLogins}}</p>
+     </div>
+     <div class="bg-green-100 p-3 rounded-full">
+      <i data-feather="activity" class="w-6 h-6 text-green-600"></i>
+     </div>
+    </div>
+    <div class="mt-4 text-sm">
+     <span class="text-green-500">↑ {{.LoginGrowthRate}}%</span> 上月增长
+    </div>
+   </div>
+   <div class="bg-white p-6 rounded-xl shadow">
+    <div class="flex justify-between items-center">
+     <div>
+      <p class="text-gray-500 text-sm">注销用户</p>
+      <p class="text-3xl font-bold mt-2">{{.DeactivatedUsers}}</p>
+     </div>
+     <div class="bg-red-100 p-3 rounded-full">
+      <i data-feather="user-x" class="w-6 h-6 text-red-600"></i>
+     </div>
+    </div>
+    <div class="mt-4 text-sm">
+     <span class="text-red-500">↑ {{.DeactivatedRate}}%</span> 上月增长
+    </div>
+   </div>
+  </div>
+
+  <div class="bg-white p-6 rounded-xl shadow">
+   <div class="flex justify-between items-center mb-4">
+    <h3 class="text-lg font-semibold">访问趋势</h3>
+    <div class="flex gap-2">
+     <button id="btn7Days" class="text-sm px-3 py-1 rounded-lg bg-gray-100 active:bg-gray-200 cursor-pointer">7天</button>
+     <button id="btn30Days" class="text-sm px-3 py-1 rounded-lg hover:bg-gray-100 cursor-pointer">30天</button>
+    </div>
+   </div>
+   <canvas id="trendChart" class="w-full h-80"></canvas>
+  </div>
+ </div>
+</main>
+
+<script>
+ // 替换 Feather 图标
+ feather.replace();
+
+ let currentChart;
+
+ // 初始化趋势图
+ function renderChart(trend) {
+  const ctx = document.getElementById('trendChart').getContext('2d');
+  if (currentChart) {
+   currentChart.destroy(); // 销毁之前的图表实例
+  }
+
+  // 如果没有数据，显示提示信息
+  console.log('qqq',trend)
+  if (!trend || trend.length === 0) {
+   alert('暂无数据');
+   return;
+  }
+
+  currentChart = new Chart(ctx, {
+   type: 'line',
+   data: {
+    labels: trend.map(d => d.date), // x轴：日期
+    datasets: [{
+     label: '日访问量',
+     data: trend.map(d => d.count), // y轴：访问人数
+     fill: true,
+     backgroundColor:'rgba(59,130,246,0.1)',
+     borderColor:'rgba(59,130,246,1)',
+     tension: 0.3
+    }]
+   },
+   options: {
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: {
+     tooltip: {
+      callbacks: {
+       label: (context) => `访问量: ${context.raw}`,
+       title: (context) => trend[context[0].dataIndex].date
+      }
+     }
+    },
+    scales: {
+     x: {
+      title: {
+       display: true,
+       text: '日期'
+      }
+     },
+     y: {
+      title: {
+       display: true,
+       text: '访问量'
+      },
+      beginAtZero: true
+     }
+    }
+   }
+  });
+  // console.log(currentChart.data)
+ }
+
+ // 数据筛选函数
+ function filterData(data, range) {
+  const today = new Date();
+  console.log(data)
+  const filteredData = data.filter(item => {
+   const itemDate = new Date(item.date);
+   const diffTime = Math.abs(today - itemDate);
+   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+   return diffDays <= range;
+  });
+  console.log(filteredData,'222332')
+  return filteredData.sort((a, b) => new Date(a.date) - new Date(b.date)); // 按日期排序
+ }
+
+ // 页面加载时初始化图表
+ document.addEventListener('DOMContentLoaded', () => {
+  const btn7Days = document.getElementById('btn7Days');
+  const btn30Days = document.getElementById('btn30Days');
+
+  // 后端传递的数据存储在全局变量 `allTrendData` 中
+  const allTrendData = {{.LoginTrend}};
+  console.log(allTrendData,'1111111')
+
+  // 默认渲染7天数据
+  let filteredData = filterData(allTrendData, 7);
+  renderChart(filteredData);
+  console.log(filteredData,'22222222')
+
+  // 绑定按钮点击事件
+  btn7Days.addEventListener('click', () => {
+   btn7Days.classList.add('bg-gray-200');
+   btn30Days.classList.remove('bg-gray-200');
+   filteredData = filterData(allTrendData, 7);
+   renderChart(filteredData);
+  });
+
+  btn30Days.addEventListener('click', () => {
+   btn30Days.classList.add('bg-gray-200');
+   btn7Days.classList.remove('bg-gray-200');
+   filteredData = filterData(allTrendData, 30);
+   renderChart(filteredData);
+  });
+ });
+</script>
+</body>
+</html>
