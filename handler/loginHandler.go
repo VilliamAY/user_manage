@@ -3,6 +3,7 @@ package handler
 import (
 	"encoding/json"
 	"exam/constant"
+	"exam/middleware"
 	"exam/server"
 	"exam/utils"
 	"html/template"
@@ -103,6 +104,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 				"message": "注册成功",
 			})
 		} else {
+			middleware.OtherLog(s)
 			w.WriteHeader(http.StatusBadRequest)
 			json.NewEncoder(w).Encode(map[string]interface{}{
 				"success": false,

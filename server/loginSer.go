@@ -2,6 +2,7 @@ package server
 
 import (
 	"exam/constant"
+	"exam/middleware"
 	"fmt"
 	"golang.org/x/crypto/bcrypt"
 	"time"
@@ -9,53 +10,54 @@ import (
 
 // CheckUsernameExists 检查用户名是否存在,存在为true
 func CheckUsernameExists(username string) (bool, error) {
-	// 使用预处理语句防止 SQL 注入
-	stmt, err := constant.DB.Prepare("SELECT COUNT(*) FROM users WHERE username = ?")
+	query := "SELECT COUNT(*) FROM users WHERE username = ?"
+	stmt, err := constant.DB.Prepare(query)
 	if err != nil {
+		middleware.LogDBOperation("预处理失败", query, err)
 		return false, fmt.Errorf("预处理失败：%w", err)
 	}
 	defer stmt.Close()
 
-	// 查询数据库中是否有这个名字
 	var count int
 	err = stmt.QueryRow(username).Scan(&count)
 	if err != nil {
 		return false, fmt.Errorf("查询数据库失败：%w", err)
 	}
 
-	// 如果 count > 0，表示用户名已存在
 	return count > 0, nil
 }
 
 // CheckNamePwd 判断用户名和密码是否正确
 func CheckNamePwd(username, password string) (bool, string) {
-	// 检查用户名是否存在
 	exists, _ := CheckUsernameExists(username)
 
 	if !exists {
 		return false, "用户不存在"
 	}
 
-	// 密码是否正确
+	query := "SELECT password FROM users WHERE username = ?"
+	middleware.LogDBOperation("执行查询", query, username)
 	var hashedPassword string
-	err := constant.DB.QueryRow("SELECT password FROM users WHERE username = ?", username).Scan(&hashedPassword)
+	err := constant.DB.QueryRow(query, username).Scan(&hashedPassword)
 	if err != nil {
 		return false, "查询数据库失败"
 	}
 
-	// 验证密码
 	err = bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 	if err != nil {
 		return false, "密码错误"
 	}
 
+	middleware.LogDBOperation("登录成功", "", username)
 	return true, "登录成功"
 }
 
 // CheckStatus 检查用户是否被禁用
 func CheckStatus(username string) (error, bool) {
+	query := "SELECT status FROM users WHERE username = ?"
+	middleware.LogDBOperation("执行查询", query, username)
 	var status string
-	err := constant.DB.QueryRow("SELECT status FROM users WHERE username = ?", username).Scan(&status)
+	err := constant.DB.QueryRow(query, username).Scan(&status)
 	if err != nil {
 		return err, false
 	}
@@ -68,17 +70,19 @@ func CheckStatus(username string) (error, bool) {
 
 // UpdateLastLogin 更新用户最后登录时间
 func UpdateLastLogin(username string) error {
-	// 获取当前时间
 	now := time.Now().Format("2006-01-02 15:04:05")
-
-	// 准备SQL语句
-	stmt, err := constant.DB.Prepare("UPDATE users SET lastLogin = ? WHERE username = ?")
+	query := "UPDATE users SET lastLogin = ? WHERE username = ?"
+	middleware.LogDBOperation("Preparing query", query, now, username)
+	stmt, err := constant.DB.Prepare(query)
 	if err != nil {
 		return err
 	}
 	defer stmt.Close()
 
-	// 执行更新
+	middleware.LogDBOperation("Executing query", query, now, username)
 	_, err = stmt.Exec(now, username)
+	if err != nil {
+		middleware.LogDBOperation("Failed to execute query", query, err)
+	}
 	return err
 }

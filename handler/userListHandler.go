@@ -3,13 +3,13 @@ package handler
 import (
 	"encoding/json"
 	"exam/constant"
+	"exam/middleware"
 	"exam/server"
 	_ "exam/server"
 	"exam/utils"
 	"fmt"
 	"html/template"
 	"io"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -26,14 +26,14 @@ func DeleteUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		//向客户端返回错误响应400字段缺失
+		middleware.OtherLog("无效的用户ID")
 		http.Error(w, "无效的用户ID", http.StatusBadRequest)
 		return
 	}
 
 	err = server.DeleteUser(id)
 	if err != nil {
-		//向客户端返回错误响应500服务器内部错误
+		middleware.OtherLog("删除用户失败")
 		http.Error(w, "删除用户失败", http.StatusInternalServerError)
 		return
 	}
@@ -41,7 +41,7 @@ func DeleteUserHandler(w http.ResponseWriter, r *http.Request) {
 	err = utils.UpdateDeletedUsersStat()
 	if err != nil {
 		// 如果更新失败，记录错误日志
-		log.Printf("更新 deleted_users 失败: %v", err)
+		middleware.OtherLog("更新deleted_users失败")
 	}
 
 	// 返回JSON响应
@@ -75,6 +75,7 @@ func SearchUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	users, totalCount, err := server.SearchUser(username, page, pageSize)
 	if err != nil {
+		middleware.OtherLog("搜索用户失败")
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(map[string]interface{}{
 			"success": false,
@@ -124,6 +125,7 @@ func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	err := server.CreateUser(username, password, email, role, status, avatarPath)
 	if err != nil {
+		middleware.OtherLog("创建用户失败")
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(map[string]interface{}{
 			"success": false,
@@ -135,7 +137,7 @@ func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 	err = utils.UpdateNewUsersStat()
 	if err != nil {
 		// 如果更新失败，记录错误日志
-		log.Printf("更新 new_users 失败: %v", err)
+		middleware.OtherLog("更新new_users失败")
 	}
 
 	// 返回成功响应
@@ -161,7 +163,7 @@ func UserList(w http.ResponseWriter, r *http.Request) {
 	// 获取数据库数据（带分页）
 	users, totalCount, startPage, endPage, err := server.GetAllUsersByAdmin(page, pageSize)
 	if err != nil {
-		fmt.Println(err)
+		middleware.OtherLog("获取用户列表失败")
 		http.Error(w, "获取用户列表失败", http.StatusInternalServerError)
 		return
 	}
@@ -206,7 +208,7 @@ func UserList(w http.ResponseWriter, r *http.Request) {
 	// 解析模板文件
 	t, err = t.ParseFiles("view/userList.html")
 	if err != nil {
-		fmt.Println("模板解析失败:", err)
+		middleware.OtherLog("模板解析失败:")
 		http.Error(w, "模板解析失败", http.StatusInternalServerError)
 		return
 	}
@@ -214,7 +216,7 @@ func UserList(w http.ResponseWriter, r *http.Request) {
 	// 渲染模板
 	err = t.Execute(w, data)
 	if err != nil {
-		fmt.Println("模板执行失败:", err)
+		middleware.OtherLog("模板执行失败:")
 		http.Error(w, "模板执行失败", http.StatusInternalServerError)
 		return
 	}
@@ -242,6 +244,7 @@ func UpdateUserHandler(w http.ResponseWriter, r *http.Request) {
 	numId, _ := strconv.Atoi(id)
 	err := server.UpdateUser(username, password, email, role, status, avatarPath, numId)
 	if err != nil {
+		middleware.OtherLog("更新用户失败")
 		json.NewEncoder(w).Encode(map[string]interface{}{
 			"success": false,
 			"message": "更新用户失败: " + err.Error(),
