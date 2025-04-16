@@ -31,8 +31,8 @@ func main() {
 	dynamicMux.HandleFunc("/userList", middleware.AuthMiddleware(handler.UserList))
 	dynamicMux.HandleFunc("/api/users/delete/{id}", middleware.AuthMiddleware(handler.DeleteUserHandler))
 	dynamicMux.HandleFunc("/api/users/create", middleware.AuthMiddleware(handler.CreateUserHandler))
-	dynamicMux.HandleFunc("/api/users/search/{username}", handler.SearchUserHandler)
-	dynamicMux.HandleFunc("/api/users/update/{id}", handler.UpdateUserHandler)
+	dynamicMux.HandleFunc("/api/users/search/{username}", middleware.AuthMiddleware(handler.SearchUserHandler))
+	dynamicMux.HandleFunc("/api/users/update/{id}", middleware.AuthMiddleware(handler.UpdateUserHandler))
 
 	// 应用中间件到动态路由
 	handlerWithRecover := middleware.RecoverMiddleware(dynamicMux)
