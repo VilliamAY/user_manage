@@ -323,19 +323,19 @@ func CheckInfo(w http.ResponseWriter, r *http.Request, username, password, email
 		ext := filepath.Ext(header.Filename)
 		//拼接用户名时间为头像文件名
 		newFilename := fmt.Sprintf("%s_%d%s", username, time.Now().UnixNano(), ext)
-		avatarPath = filepath.Join("static/avatar", newFilename)
+		avatarPath = filepath.Join("static", newFilename)
 
 		// 创建目标文件
 		dst, err := os.Create(avatarPath)
 		if err != nil {
-			ReturnJson(w, false, "Failed to create avatar file")
+			ReturnJson(w, false, "创建文件失败")
 			return "", ""
 		}
 		defer dst.Close()
 
 		// 复制文件内容
 		if _, err := io.Copy(dst, file); err != nil {
-			ReturnJson(w, false, "Failed to save avatar file")
+			ReturnJson(w, false, "保存头像文件失败")
 			return "", ""
 		}
 

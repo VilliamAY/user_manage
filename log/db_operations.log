@@ -1,0 +1,1625 @@
+[DB] 2025/04/15 22:21:40 logger.go:48: 执行查询: SELECT COUNT(*) FROM users
+[DB] 2025/04/15 22:21:40 logger.go:48: 执行查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:40 logger.go:48: 执行查询: SELECT SUM(deleted_users) FROM login_stats
+[DB] 2025/04/15 22:21:40 logger.go:48: 计算登录增长率: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/15 22:21:40 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:40 logger.go:48: 计算用户增长率: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/15 22:21:40 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:40 logger.go:48: 正在计算停用率: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/15 22:21:40 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:40 logger.go:48: 获取过去30天的登录趋势数据: 
+[DB] 2025/04/15 22:21:40 logger.go:48: 执行查询: 
+        SELECT login_date, login_count
+        FROM login_stats
+        WHERE login_date >= ? AND login_date <= ?
+        ORDER BY login_date
+    , args: [2025-03-16 2025-04-15]
+[DB] 2025/04/15 22:21:49 logger.go:48: 执行查询: SELECT password FROM users WHERE username = ?, args: [userB]
+[DB] 2025/04/15 22:21:50 logger.go:48: 登录成功: , args: [userB]
+[DB] 2025/04/15 22:21:50 logger.go:48: 执行查询: SELECT status FROM users WHERE username = ?, args: [userB]
+[DB] 2025/04/15 22:21:50 logger.go:48: 用户已经存在: , args: [userB]
+[DB] 2025/04/15 22:21:50 logger.go:48: Preparing query: UPDATE users SET lastLogin = ? WHERE username = ?, args: [2025-04-15 22:21:50 userB]
+[DB] 2025/04/15 22:21:50 logger.go:48: Executing query: UPDATE users SET lastLogin = ? WHERE username = ?, args: [2025-04-15 22:21:50 userB]
+[DB] 2025/04/15 22:21:50 logger.go:48: 执行查询: SELECT COUNT(*) FROM users
+[DB] 2025/04/15 22:21:50 logger.go:48: 执行查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:50 logger.go:48: 执行查询: SELECT SUM(deleted_users) FROM login_stats
+[DB] 2025/04/15 22:21:50 logger.go:48: 计算登录增长率: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/15 22:21:50 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:50 logger.go:48: 计算用户增长率: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/15 22:21:50 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:50 logger.go:48: 正在计算停用率: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/15 22:21:50 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:50 logger.go:48: 获取过去30天的登录趋势数据: 
+[DB] 2025/04/15 22:21:50 logger.go:48: 执行查询: 
+        SELECT login_date, login_count
+        FROM login_stats
+        WHERE login_date >= ? AND login_date <= ?
+        ORDER BY login_date
+    , args: [2025-03-16 2025-04-15]
+[DB] 2025/04/15 22:21:56 logger.go:48: 执行查询: SELECT COUNT(*) FROM users
+[DB] 2025/04/15 22:21:56 logger.go:48: 执行查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:56 logger.go:48: 执行查询: SELECT SUM(deleted_users) FROM login_stats
+[DB] 2025/04/15 22:21:56 logger.go:48: 计算登录增长率: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/15 22:21:56 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:56 logger.go:48: 计算用户增长率: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/15 22:21:56 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:56 logger.go:48: 正在计算停用率: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/15 22:21:56 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:56 logger.go:48: 获取过去30天的登录趋势数据: 
+[DB] 2025/04/15 22:21:56 logger.go:48: 执行查询: 
+        SELECT login_date, login_count
+        FROM login_stats
+        WHERE login_date >= ? AND login_date <= ?
+        ORDER BY login_date
+    , args: [2025-03-16 2025-04-15]
+[DB] 2025/04/15 22:21:58 logger.go:48: 执行查询: SELECT COUNT(*) FROM users
+[DB] 2025/04/15 22:21:58 logger.go:48: 执行查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:58 logger.go:48: 执行查询: SELECT SUM(deleted_users) FROM login_stats
+[DB] 2025/04/15 22:21:58 logger.go:48: 计算登录增长率: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/15 22:21:58 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:58 logger.go:48: 计算用户增长率: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/15 22:21:58 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:58 logger.go:48: 正在计算停用率: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/15 22:21:58 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/15 22:21:58 logger.go:48: 获取过去30天的登录趋势数据: 
+[DB] 2025/04/15 22:21:58 logger.go:48: 执行查询: 
+        SELECT login_date, login_count
+        FROM login_stats
+        WHERE login_date >= ? AND login_date <= ?
+        ORDER BY login_date
+    , args: [2025-03-16 2025-04-15]
+[DB] 2025/04/16 15:41:12 logger.go:48: 执行查询: SELECT password FROM users WHERE username = ?, args: [userB]
+[DB] 2025/04/16 15:41:29 logger.go:48: Checking if username exists: , args: [userB]
+[DB] 2025/04/16 15:41:41 logger.go:48: Checking if username exists: , args: [user1938148357]
+[DB] 2025/04/16 15:41:41 logger.go:48: Preparing query: INSERT INTO users (username, email, password) VALUES (?, ?, ?), args: [user1938148357 1938148357@qq.com [36 50 97 36 49 48 36 68 111 57 50 110 50 71 74 65 67 108 49 57 99 87 97 111 101 87 115 56 79 49 68 120 55 108 105 66 53 110 49 65 54 66 66 83 74 77 50 117 98 54 52 81 52 89 120 75 101 103 79 121]]
+[DB] 2025/04/16 15:41:41 logger.go:48: 执行插入查询: INSERT INTO users (username, email, password) VALUES (?, ?, ?), args: [user1938148357 1938148357@qq.com [36 50 97 36 49 48 36 68 111 57 50 110 50 71 74 65 67 108 49 57 99 87 97 111 101 87 115 56 79 49 68 120 55 108 105 66 53 110 49 65 54 66 66 83 74 77 50 117 98 54 52 81 52 89 120 75 101 103 79 121]]
+[DB] 2025/04/16 15:41:50 logger.go:48: 执行查询: SELECT password FROM users WHERE username = ?, args: [userB]
+[DB] 2025/04/16 15:41:50 logger.go:48: 登录成功: , args: [userB]
+[DB] 2025/04/16 15:41:50 logger.go:48: 执行查询: SELECT status FROM users WHERE username = ?, args: [userB]
+[DB] 2025/04/16 15:41:50 logger.go:48: Preparing query: UPDATE users SET lastLogin = ? WHERE username = ?, args: [2025-04-16 15:41:50 userB]
+[DB] 2025/04/16 15:41:50 logger.go:48: Executing query: UPDATE users SET lastLogin = ? WHERE username = ?, args: [2025-04-16 15:41:50 userB]
+[DB] 2025/04/16 15:41:50 logger.go:48: 执行查询: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 15:41:50 logger.go:48: 执行查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 15:41:50 logger.go:48: 执行查询: SELECT SUM(deleted_users) FROM login_stats
+[DB] 2025/04/16 15:41:50 logger.go:48: 计算登录增长率: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 15:41:50 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 15:41:50 logger.go:48: 计算用户增长率: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 15:41:50 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 15:41:50 logger.go:48: 正在计算停用率: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 15:41:50 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 15:41:50 logger.go:48: 获取过去30天的登录趋势数据: 
+[DB] 2025/04/16 15:41:50 logger.go:48: 执行查询: 
+        SELECT login_date, login_count
+        FROM login_stats
+        WHERE login_date >= ? AND login_date <= ?
+        ORDER BY login_date
+    , args: [2025-03-17 2025-04-16]
+[DB] 2025/04/16 15:41:56 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 15:41:56 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 15:41:56 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 15:41:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 15:41:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 15:41:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 15:41:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 15:41:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 15:41:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 15:41:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 15:41:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:34:04 logger.go:48: 执行查询: SELECT password FROM users WHERE username = ?, args: [userB]
+[DB] 2025/04/16 16:34:44 logger.go:48: Checking if username exists: , args: [baby]
+[DB] 2025/04/16 16:34:44 logger.go:48: Preparing query: INSERT INTO users (username, email, password) VALUES (?, ?, ?), args: [baby baby@example.com [36 50 97 36 49 48 36 97 79 90 82 115 121 108 115 84 105 103 85 113 118 70 78 121 56 77 53 107 46 76 65 86 89 57 113 57 102 73 98 67 101 120 77 112 108 89 117 74 76 120 119 77 117 56 122 71 51 74 80 46]]
+[DB] 2025/04/16 16:34:44 logger.go:48: 执行插入查询: INSERT INTO users (username, email, password) VALUES (?, ?, ?), args: [baby baby@example.com [36 50 97 36 49 48 36 97 79 90 82 115 121 108 115 84 105 103 85 113 118 70 78 121 56 77 53 107 46 76 65 86 89 57 113 57 102 73 98 67 101 120 77 112 108 89 117 74 76 120 119 77 117 56 122 71 51 74 80 46]]
+[DB] 2025/04/16 16:35:00 logger.go:48: 执行查询: SELECT password FROM users WHERE username = ?, args: [baby]
+[DB] 2025/04/16 16:35:00 logger.go:48: 登录成功: , args: [baby]
+[DB] 2025/04/16 16:35:00 logger.go:48: 执行查询: SELECT status FROM users WHERE username = ?, args: [baby]
+[DB] 2025/04/16 16:35:00 logger.go:48: Preparing query: UPDATE users SET lastLogin = ? WHERE username = ?, args: [2025-04-16 16:35:00 baby]
+[DB] 2025/04/16 16:35:00 logger.go:48: Executing query: UPDATE users SET lastLogin = ? WHERE username = ?, args: [2025-04-16 16:35:00 baby]
+[DB] 2025/04/16 16:35:00 logger.go:48: 执行查询: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:35:00 logger.go:48: 执行查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:35:00 logger.go:48: 执行查询: SELECT SUM(deleted_users) FROM login_stats
+[DB] 2025/04/16 16:35:00 logger.go:48: 计算登录增长率: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:35:00 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:35:00 logger.go:48: 计算用户增长率: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:35:00 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:35:00 logger.go:48: 正在计算停用率: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:35:00 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:35:00 logger.go:48: 获取过去30天的登录趋势数据: 
+[DB] 2025/04/16 16:35:00 logger.go:48: 执行查询: 
+        SELECT login_date, login_count
+        FROM login_stats
+        WHERE login_date >= ? AND login_date <= ?
+        ORDER BY login_date
+    , args: [2025-03-17 2025-04-16]
+[DB] 2025/04/16 16:35:05 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:35:05 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:35:05 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:35:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:10 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:35:10 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:35:10 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:35:10 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:10 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:10 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:10 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:10 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:10 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:10 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:10 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:13 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:35:13 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 16:35:13 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 16:35:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:15 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:35:15 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:35:15 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:35:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:16 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:35:16 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:35:16 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:35:16 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:16 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:16 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:16 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:16 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:16 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:16 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:16 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:25 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:35:25 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 16:35:25 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 16:35:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:26 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:35:26 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:35:26 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:35:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:30 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:35:30 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 16:35:30 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 16:35:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:33 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:35:33 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:35:33 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:35:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:35:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:56 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:36:56 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:36:56 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:36:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:59 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:36:59 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:36:59 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:36:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:36:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:37:01 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:37:01 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:37:01 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:37:01 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:37:01 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:37:01 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:37:01 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:37:01 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:37:01 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:37:01 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:37:01 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:11 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:39:11 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:39:11 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:39:11 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:11 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:11 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:11 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:11 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:11 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:11 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:11 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:15 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:39:15 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:39:15 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:39:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:39 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:39:39 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:39:39 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:39:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:39:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:40:01 logger.go:48: Executing query: SELECT COUNT(*) FROM users WHERE username = ? AND id != ?, args: [夏莉 44]
+[DB] 2025/04/16 16:40:01 logger.go:48: Starting transaction: 
+[DB] 2025/04/16 16:40:01 logger.go:48: Preparing query: UPDATE users SET username=?, email=?, role=?, status=?, avatar=? WHERE id=?, args: [夏莉 xl@example.com 普通用户 禁用 /static/avatar/夏莉_1744792801883222300.jpg 44]
+[DB] 2025/04/16 16:40:01 logger.go:48: Executing query: UPDATE users SET username=?, email=?, role=?, status=?, avatar=? WHERE id=?, args: [夏莉 xl@example.com 普通用户 禁用 /static/avatar/夏莉_1744792801883222300.jpg 44]
+[DB] 2025/04/16 16:40:01 logger.go:48: Committing transaction: 
+[DB] 2025/04/16 16:40:03 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:40:03 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:40:03 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:40:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:40:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:40:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:40:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:40:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:40:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:40:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:40:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:42:05 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:42:05 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:42:05 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:42:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:42:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:42:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:42:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:42:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:42:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:42:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:42:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:42:09 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:42:09 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 16:42:09 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 16:42:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:42:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:42:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:42:31 logger.go:48: 执行查询: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:42:31 logger.go:48: 执行查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:42:31 logger.go:48: 执行查询: SELECT SUM(deleted_users) FROM login_stats
+[DB] 2025/04/16 16:42:31 logger.go:48: 计算登录增长率: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:42:31 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:42:31 logger.go:48: 计算用户增长率: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:42:31 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:42:31 logger.go:48: 正在计算停用率: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:42:31 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:42:31 logger.go:48: 获取过去30天的登录趋势数据: 
+[DB] 2025/04/16 16:42:31 logger.go:48: 执行查询: 
+        SELECT login_date, login_count
+        FROM login_stats
+        WHERE login_date >= ? AND login_date <= ?
+        ORDER BY login_date
+    , args: [2025-03-17 2025-04-16]
+[DB] 2025/04/16 16:43:02 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:43:02 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:43:02 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:43:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:25 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:43:25 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:43:25 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:43:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:43:27 logger.go:48: 执行查询: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:43:27 logger.go:48: 执行查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:43:27 logger.go:48: 执行查询: SELECT SUM(deleted_users) FROM login_stats
+[DB] 2025/04/16 16:43:27 logger.go:48: 计算登录增长率: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:43:27 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:43:27 logger.go:48: 计算用户增长率: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:43:27 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:43:27 logger.go:48: 正在计算停用率: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:43:27 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:43:27 logger.go:48: 获取过去30天的登录趋势数据: 
+[DB] 2025/04/16 16:43:27 logger.go:48: 执行查询: 
+        SELECT login_date, login_count
+        FROM login_stats
+        WHERE login_date >= ? AND login_date <= ?
+        ORDER BY login_date
+    , args: [2025-03-17 2025-04-16]
+[DB] 2025/04/16 16:43:35 logger.go:48: 执行查询: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:43:35 logger.go:48: 执行查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:43:35 logger.go:48: 执行查询: SELECT SUM(deleted_users) FROM login_stats
+[DB] 2025/04/16 16:43:35 logger.go:48: 计算登录增长率: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:43:35 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:43:35 logger.go:48: 计算用户增长率: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:43:35 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:43:35 logger.go:48: 正在计算停用率: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:43:35 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:43:35 logger.go:48: 获取过去30天的登录趋势数据: 
+[DB] 2025/04/16 16:43:35 logger.go:48: 执行查询: 
+        SELECT login_date, login_count
+        FROM login_stats
+        WHERE login_date >= ? AND login_date <= ?
+        ORDER BY login_date
+    , args: [2025-03-17 2025-04-16]
+[DB] 2025/04/16 16:43:54 logger.go:48: 执行查询: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:43:54 logger.go:48: 执行查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:43:54 logger.go:48: 执行查询: SELECT SUM(deleted_users) FROM login_stats
+[DB] 2025/04/16 16:43:54 logger.go:48: 计算登录增长率: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:43:54 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:43:54 logger.go:48: 计算用户增长率: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:43:54 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:43:54 logger.go:48: 正在计算停用率: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:43:54 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:43:54 logger.go:48: 获取过去30天的登录趋势数据: 
+[DB] 2025/04/16 16:43:54 logger.go:48: 执行查询: 
+        SELECT login_date, login_count
+        FROM login_stats
+        WHERE login_date >= ? AND login_date <= ?
+        ORDER BY login_date
+    , args: [2025-03-17 2025-04-16]
+[DB] 2025/04/16 16:44:04 logger.go:48: 执行查询: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:44:04 logger.go:48: 执行查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:44:04 logger.go:48: 执行查询: SELECT SUM(deleted_users) FROM login_stats
+[DB] 2025/04/16 16:44:04 logger.go:48: 计算登录增长率: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:44:04 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(login_count), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:44:04 logger.go:48: 计算用户增长率: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:44:04 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(new_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:44:04 logger.go:48: 正在计算停用率: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	, args: [
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 MONTH), '%Y-%m-01')
+		AND login_date < DATE_FORMAT(NOW(), '%Y-%m-01')
+	]
+[DB] 2025/04/16 16:44:04 logger.go:48: 正在执行当前查询: 
+		SELECT IFNULL(SUM(deleted_users), 0) 
+		FROM login_stats 
+		WHERE login_date >= DATE_FORMAT(NOW(), '%Y-%m-01')
+	
+[DB] 2025/04/16 16:44:04 logger.go:48: 获取过去30天的登录趋势数据: 
+[DB] 2025/04/16 16:44:04 logger.go:48: 执行查询: 
+        SELECT login_date, login_count
+        FROM login_stats
+        WHERE login_date >= ? AND login_date <= ?
+        ORDER BY login_date
+    , args: [2025-03-17 2025-04-16]
+[DB] 2025/04/16 16:51:00 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:51:00 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:51:00 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:51:00 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:00 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:00 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:00 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:00 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:00 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:00 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:00 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:08 logger.go:48: Executing query: SELECT COUNT(*) FROM users WHERE username = ? AND id != ?, args: [userC 18]
+[DB] 2025/04/16 16:51:08 logger.go:48: Starting transaction: 
+[DB] 2025/04/16 16:51:08 logger.go:48: Preparing query: UPDATE users SET username=?, email=?, role=?, status=?, avatar=? WHERE id=?, args: [userC userC@example.com 普通用户 启用 /static/userC_1744793468621261700.jpg 18]
+[DB] 2025/04/16 16:51:08 logger.go:48: Executing query: UPDATE users SET username=?, email=?, role=?, status=?, avatar=? WHERE id=?, args: [userC userC@example.com 普通用户 启用 /static/userC_1744793468621261700.jpg 18]
+[DB] 2025/04/16 16:51:08 logger.go:48: Committing transaction: 
+[DB] 2025/04/16 16:51:09 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:51:09 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:51:09 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:51:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:19 logger.go:48: Executing query: SELECT COUNT(*) FROM users WHERE username = ? AND id != ?, args: [userC 18]
+[DB] 2025/04/16 16:51:19 logger.go:48: Starting transaction: 
+[DB] 2025/04/16 16:51:19 logger.go:48: Preparing query: UPDATE users SET username=?, email=?, role=?, status=?, avatar=? WHERE id=?, args: [userC userC@example.com 普通用户 启用 /static/userC_1744793479443547800.jpg 18]
+[DB] 2025/04/16 16:51:19 logger.go:48: Executing query: UPDATE users SET username=?, email=?, role=?, status=?, avatar=? WHERE id=?, args: [userC userC@example.com 普通用户 启用 /static/userC_1744793479443547800.jpg 18]
+[DB] 2025/04/16 16:51:19 logger.go:48: Committing transaction: 
+[DB] 2025/04/16 16:51:20 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:51:20 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:51:20 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:51:20 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:20 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:20 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:20 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:20 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:20 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:20 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:20 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:42 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:51:42 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:51:42 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:51:42 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:42 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:42 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:42 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:42 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:42 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:42 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:42 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:48 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:51:48 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:51:48 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:51:48 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:48 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:48 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:48 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:48 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:48 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:48 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:48 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:49 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:51:49 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:51:49 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:51:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:51:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:23 logger.go:48: Preparing query: insert into users(username,password,email,role,status,avatar)values (?,?,?,?,?,?), args: [集集堡 $2a$10$Fd1IyMLn2F322CsVOnFBrO6jbF9gj4pE.A1KTh5Rgrrqw/Sxt71Le jjb@example.com 普通用户 禁用 /static/集集堡_1744793543580285700.jpg]
+[DB] 2025/04/16 16:52:23 logger.go:48: Executing query: insert into users(username,password,email,role,status,avatar)values (?,?,?,?,?,?), args: [集集堡 $2a$10$Fd1IyMLn2F322CsVOnFBrO6jbF9gj4pE.A1KTh5Rgrrqw/Sxt71Le jjb@example.com 普通用户 禁用 /static/集集堡_1744793543580285700.jpg]
+[DB] 2025/04/16 16:52:23 logger.go:48: Getting rows affected: insert into users(username,password,email,role,status,avatar)values (?,?,?,?,?,?)
+[DB] 2025/04/16 16:52:23 logger.go:48: User created successfully: insert into users(username,password,email,role,status,avatar)values (?,?,?,?,?,?)
+[DB] 2025/04/16 16:52:24 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:52:24 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:52:24 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:52:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:26 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:52:26 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 16:52:26 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 16:52:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:54 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:52:54 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:52:54 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:52:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:52:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:30 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:54:30 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:54:30 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:54:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:53 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:54:53 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:54:53 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 16:54:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:55 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:54:55 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:54:55 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:54:55 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:55 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:55 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:55 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:55 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:55 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:55 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:54:55 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:55:39 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 16:55:39 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:55:39 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 16:55:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:55:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:55:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:55:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:55:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:55:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:55:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 16:55:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:13 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:01:13 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:01:13 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:01:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:23 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:01:23 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:01:23 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:01:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:01:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:45 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:02:45 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:02:45 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:02:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:49 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:02:49 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:02:49 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:02:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:02:49 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:03:24 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:03:24 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:03:24 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:03:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:03:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:03:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:03:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:03:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:03:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:03:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:03:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:13 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:05:13 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:05:13 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:05:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:13 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:18 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:05:18 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:05:18 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:05:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:32 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:05:32 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:05:32 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:05:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:57 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:05:57 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:05:57 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:05:57 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:57 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:57 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:57 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:57 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:57 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:57 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:05:57 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:06:52 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:06:52 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:06:52 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:06:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:06:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:06:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:06:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:06:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:06:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:06:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:06:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:33 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:08:33 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:08:33 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:08:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:41 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:08:41 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:08:41 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:08:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:08:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:09:53 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:09:53 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:09:53 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:09:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:09:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:09:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:09:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:09:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:09:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:09:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:09:53 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:11:43 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:11:43 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:11:43 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:11:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:11:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:11:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:11:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:11:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:11:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:11:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:11:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:41 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:12:41 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:12:41 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:12:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:43 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:12:43 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:12:43 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:12:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:46 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:12:46 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:12:46 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:12:46 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:46 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:46 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:46 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:46 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:46 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:46 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:12:46 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:03 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:14:03 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:14:03 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:14:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:54 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:14:54 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:14:54 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:14:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:14:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:15:03 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:15:03 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 17:15:03 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 17:15:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:15:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:15:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:15:03 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:15:05 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:15:05 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 17:15:05 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 17:15:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:15:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:15:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:15:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:15:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:15:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:15:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:15:05 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:15 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:19:15 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:19:15 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:19:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:15 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:32 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:19:32 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:19:32 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:19:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:19:32 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:02 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:21:02 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:21:02 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:21:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:02 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:24 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:21:24 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:21:24 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:21:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:21:24 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:24:37 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:24:37 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:24:37 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:24:37 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:24:37 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:24:37 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:24:37 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:24:37 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:24:37 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:24:37 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:24:37 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:22 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:25:22 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:25:22 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:25:22 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:22 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:22 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:22 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:22 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:22 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:22 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:22 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:33 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:25:33 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:25:33 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:25:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:54 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:25:54 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:25:54 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:25:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:25:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:39 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:28:39 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:28:39 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:28:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:52 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:28:52 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:28:52 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:28:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:28:52 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:39 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:50:39 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:50:39 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:50:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:54 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:50:54 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:50:54 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:50:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:50:54 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:52:09 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:52:09 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:52:09 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:52:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:52:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:52:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:52:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:52:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:52:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:52:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:52:09 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:19 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:55:19 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:55:19 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:55:19 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:19 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:19 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:19 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:19 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:19 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:19 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:19 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:59 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:55:59 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:55:59 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:55:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:55:59 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:57:45 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:57:45 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:57:45 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:57:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:57:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:57:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:57:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:57:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:57:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:57:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:57:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:18 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:58:18 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 17:58:18 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 17:58:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:18 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:19 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:58:19 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 17:58:19 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 16]
+[DB] 2025/04/16 17:58:19 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:19 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:19 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:19 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:26 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:58:26 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 17:58:26 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 8]
+[DB] 2025/04/16 17:58:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:26 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:28 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:58:28 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:58:28 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:58:28 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:28 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:28 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:28 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:28 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:28 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:28 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:58:28 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:59:43 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 17:59:43 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:59:43 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 17:59:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:59:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:59:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:59:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:59:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:59:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:59:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 17:59:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:41 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:01:41 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:01:41 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:01:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:41 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:45 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:01:45 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:01:45 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:01:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:01:45 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:38 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:02:38 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:02:38 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:02:38 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:38 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:38 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:38 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:38 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:38 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:38 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:38 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:43 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:02:43 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:02:43 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:02:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:43 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:55 logger.go:48: Executing query: SELECT COUNT(*) FROM users WHERE username = ? AND id != ?, args: [userF 27]
+[DB] 2025/04/16 18:02:55 logger.go:48: Starting transaction: 
+[DB] 2025/04/16 18:02:55 logger.go:48: Preparing query: UPDATE users SET username=?, email=?, role=?, status=?, avatar=? WHERE id=?, args: [userF userF@example.com 普通用户 禁用 /static/userF_1744797775601233000.jpg 27]
+[DB] 2025/04/16 18:02:55 logger.go:48: Executing query: UPDATE users SET username=?, email=?, role=?, status=?, avatar=? WHERE id=?, args: [userF userF@example.com 普通用户 禁用 /static/userF_1744797775601233000.jpg 27]
+[DB] 2025/04/16 18:02:55 logger.go:48: Committing transaction: 
+[DB] 2025/04/16 18:02:56 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:02:56 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:02:56 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:02:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:02:56 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:25 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:03:25 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:03:25 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:03:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:25 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:30 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:03:30 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:03:30 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:03:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:30 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:38 logger.go:48: Executing query: SELECT COUNT(*) FROM users WHERE username = ? AND id != ?, args: [userF 27]
+[DB] 2025/04/16 18:03:38 logger.go:48: Starting transaction: 
+[DB] 2025/04/16 18:03:38 logger.go:48: Preparing query: UPDATE users SET username=?, email=?, role=?, status=?, avatar=? WHERE id=?, args: [userF userF@example.com 普通用户 禁用 /static/userF_1744797818583948400.jpg 27]
+[DB] 2025/04/16 18:03:38 logger.go:48: Executing query: UPDATE users SET username=?, email=?, role=?, status=?, avatar=? WHERE id=?, args: [userF userF@example.com 普通用户 禁用 /static/userF_1744797818583948400.jpg 27]
+[DB] 2025/04/16 18:03:38 logger.go:48: Committing transaction: 
+[DB] 2025/04/16 18:03:39 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:03:39 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:03:39 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:03:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:03:39 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:05:33 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:05:36 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:06:00 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:10:23 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:10:23 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:10:23 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:10:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:23 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:32 logger.go:48: Executing query: SELECT COUNT(*) FROM users WHERE username = ? AND id != ?, args: [userE 26]
+[DB] 2025/04/16 18:10:32 logger.go:48: Starting transaction: 
+[DB] 2025/04/16 18:10:32 logger.go:48: Preparing query: UPDATE users SET username=?, email=?, role=?, status=?, avatar=? WHERE id=?, args: [userE userE@example.com 普通用户 禁用 /static/userE_1744798232040597100.jpg 26]
+[DB] 2025/04/16 18:10:32 logger.go:48: Executing query: UPDATE users SET username=?, email=?, role=?, status=?, avatar=? WHERE id=?, args: [userE userE@example.com 普通用户 禁用 /static/userE_1744798232040597100.jpg 26]
+[DB] 2025/04/16 18:10:32 logger.go:48: Committing transaction: 
+[DB] 2025/04/16 18:10:33 logger.go:48: Executing query: SELECT COUNT(*) FROM users
+[DB] 2025/04/16 18:10:33 logger.go:48: Preparing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:10:33 logger.go:48: Executing query: SELECT * FROM users LIMIT ? OFFSET ?, args: [8 0]
+[DB] 2025/04/16 18:10:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
+[DB] 2025/04/16 18:10:33 logger.go:48: Scanning row: SELECT * FROM users LIMIT ? OFFSET ?
