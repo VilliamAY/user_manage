@@ -9,7 +9,6 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"time"
 )
 
 // Login 登录时http请求的处理函数
@@ -23,48 +22,43 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		password := r.FormValue("password")
 
 		// 验证用户名和密码
+
 		if ok, s := server.CheckNamePwd(username, password); !ok {
-			w.WriteHeader(http.StatusBadRequest)
-			json.NewEncoder(w).Encode(map[string]interface{}{
-				"success": false,
-				"message": s,
-			})
+			utils.ReturnJson(w, false, s, http.StatusBadRequest)
 			return
 		}
 
 		// 验证用户状态
 		if _, ok := server.CheckStatus(username); !ok {
 			// 用户已经被禁用
-			w.WriteHeader(http.StatusBadRequest)
-			json.NewEncoder(w).Encode(map[string]interface{}{
-				"success": false,
-				"message": "用户已被禁用",
-			})
+			utils.ReturnJson(w, false, "用户已被禁用", http.StatusBadRequest)
 			return
 		}
 
 		// 更新最后登录时间
 		err := server.UpdateLastLogin(username)
 		if err != nil {
-			w.WriteHeader(http.StatusInternalServerError)
-			json.NewEncoder(w).Encode(map[string]interface{}{
-				"success": false,
-				"message": "更新登录时间失败",
-			})
+			utils.ReturnJson(w, false, "更新登录时间失败", http.StatusInternalServerError)
 			return
 		}
 
 		// 登录成功后更新今日登录统计
-		today := time.Now().Format("2006-01-02")
-		_, err = constant.DB.Exec(`
-        INSERT INTO login_stats (login_date, login_count)
-        VALUES (?, 1)
-        ON DUPLICATE KEY UPDATE login_count = login_count + 1
-    `, today)
+		err = server.UpdateLogins()
 
 		if err != nil {
-			log.Printf("更新登录统计失败: %v", err)
+			middleware.OtherLog("更新登录统计失败" + err.Error())
 		}
+
+		//获取当前用户
+		user := server.GetUser(username)
+
+		// 验证成功后，存储用户角色
+		session, _ := constant.Store.Get(r, "session-name")
+		session.Values["authenticated"] = true
+		session.Values["role"] = user.Role
+		session.Values["avatar"] = user.Avatar
+		session.Values["username"] = user.Username
+		session.Save(r, w)
 
 		// 登录成功，返回 JSON 响应
 		w.WriteHeader(http.StatusOK)
@@ -98,18 +92,10 @@ func Register(w http.ResponseWriter, r *http.Request) {
 				log.Printf("更新 new_users 失败: %v", err)
 			}
 
-			w.WriteHeader(http.StatusBadRequest)
-			json.NewEncoder(w).Encode(map[string]interface{}{
-				"success": true,
-				"message": "注册成功",
-			})
+			utils.ReturnJson(w, true, "注册成功", http.StatusBadRequest)
 		} else {
 			middleware.OtherLog(s)
-			w.WriteHeader(http.StatusBadRequest)
-			json.NewEncoder(w).Encode(map[string]interface{}{
-				"success": false,
-				"message": s,
-			})
+			utils.ReturnJson(w, false, s, http.StatusBadRequest)
 			return
 		}
 	}

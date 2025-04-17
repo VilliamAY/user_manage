@@ -1,9 +1,15 @@
 package constant
 
-import "database/sql"
+import (
+	"database/sql"
+	"github.com/gorilla/sessions"
+)
 
 // DB 全局变量
 var DB *sql.DB
+
+// Store 定义一个会话存储
+var Store = sessions.NewCookieStore([]byte("your-secret-key"))
 
 // User 结构体
 type User struct {

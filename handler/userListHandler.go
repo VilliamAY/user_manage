@@ -20,6 +20,11 @@ import (
 
 // DeleteUserHandler 删除用户的的路由处理
 func DeleteUserHandler(w http.ResponseWriter, r *http.Request) {
+	ok := utils.CheckRole(w, r)
+	if !ok {
+		return
+	}
+
 	//从http请求的url路径中提取用户id
 	path := r.URL.Path
 	idStr := strings.TrimPrefix(path, "/api/users/delete/")
@@ -27,14 +32,22 @@ func DeleteUserHandler(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
 		middleware.OtherLog("无效的用户ID")
-		http.Error(w, "无效的用户ID", http.StatusBadRequest)
+		utils.ReturnJson(w, false, "无效的用户ID", http.StatusBadRequest)
+		return
+	}
+
+	//获取当前用户名
+	session, _ := constant.Store.Get(r, "session-name")
+	nowName, ok := session.Values["username"].(string)
+	if nowName == server.GetUsername(id) {
+		utils.ReturnJson(w, false, "你不能删除自己", http.StatusInternalServerError)
 		return
 	}
 
 	err = server.DeleteUser(id)
 	if err != nil {
 		middleware.OtherLog("删除用户失败")
-		http.Error(w, "删除用户失败", http.StatusInternalServerError)
+		utils.ReturnJson(w, false, "删除用户失败", http.StatusInternalServerError)
 		return
 	}
 
@@ -46,17 +59,14 @@ func DeleteUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	// 返回JSON响应
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(map[string]interface{}{
-		"success": true,
-		"message": "用户删除成功",
-	})
+	utils.ReturnJson(w, true, "用户删除成功", 200)
 }
 
 // SearchUserHandler 搜索的的路由处理
 func SearchUserHandler(w http.ResponseWriter, r *http.Request) {
 	// 只处理GET请求
 	if r.Method != http.MethodGet {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		utils.ReturnJson(w, false, "请求方法错误", http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -76,11 +86,7 @@ func SearchUserHandler(w http.ResponseWriter, r *http.Request) {
 	users, totalCount, err := server.SearchUser(username, page, pageSize)
 	if err != nil {
 		middleware.OtherLog("搜索用户失败")
-		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode(map[string]interface{}{
-			"success": false,
-			"message": "搜索用户失败",
-		})
+		utils.ReturnJson(w, false, "搜索用户失败", http.StatusBadRequest)
 		return
 	}
 
@@ -102,6 +108,11 @@ func SearchUserHandler(w http.ResponseWriter, r *http.Request) {
 
 // CreateUserHandler 创建用户的路由处理
 func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
+	ok := utils.CheckRole(w, r)
+	if !ok {
+		return
+	}
+
 	// 设置响应头
 	w.Header().Set("Content-Type", "application/json")
 
@@ -119,18 +130,14 @@ func CreateUserHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if password == "" {
-		ReturnJson(w, false, "密码为空")
+		utils.ReturnJson(w, false, "密码为空", http.StatusBadRequest)
 		return
 	}
 
 	err := server.CreateUser(username, password, email, role, status, avatarPath)
 	if err != nil {
 		middleware.OtherLog("创建用户失败")
-		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode(map[string]interface{}{
-			"success": false,
-			"message": "创建用户失败" + err.Error(),
-		})
+		utils.ReturnJson(w, false, "创建用户失败", http.StatusBadRequest)
 		return
 	}
 
@@ -171,8 +178,21 @@ func UserList(w http.ResponseWriter, r *http.Request) {
 	// 计算总页数
 	totalPages := (totalCount + pageSize - 1) / pageSize
 
+	//获取当前登录用户的头像和角色
+	session, _ := constant.Store.Get(r, "session-name")
+	nowAvatar, ok := session.Values["avatar"].(string)
+	if !ok {
+		nowAvatar = "/static/1.jpg" // 默认头像
+	}
+	nowRole, ok := session.Values["role"].(string)
+	if !ok {
+		nowRole = "普通用户" // 默认是普通用户
+	}
+
 	// 构造传递给模板的数据结构
 	data := struct {
+		NowAvatar  string
+		NowRole    string
 		Users      []constant.User
 		Page       int
 		TotalPages int
@@ -180,12 +200,14 @@ func UserList(w http.ResponseWriter, r *http.Request) {
 		StartPage  int
 		EndPage    int
 	}{
-		Users:      users,
-		Page:       page,
-		TotalPages: totalPages,
-		TotalCount: totalCount,
-		StartPage:  startPage,
-		EndPage:    endPage,
+		nowAvatar,
+		nowRole,
+		users,
+		page,
+		totalPages,
+		totalCount,
+		startPage,
+		endPage,
 	}
 
 	// 定义 seq 函数
@@ -217,13 +239,18 @@ func UserList(w http.ResponseWriter, r *http.Request) {
 	err = t.Execute(w, data)
 	if err != nil {
 		middleware.OtherLog("模板执行失败:")
-		http.Error(w, "模板执行失败", http.StatusInternalServerError)
+		fmt.Println("模板执行失败" + err.Error())
 		return
 	}
 }
 
 // UpdateUserHandler 修改用户信息
 func UpdateUserHandler(w http.ResponseWriter, r *http.Request) {
+	ok := utils.CheckRole(w, r)
+	if !ok {
+		return
+	}
+
 	// 设置响应头
 	w.Header().Set("Content-Type", "application/json")
 
@@ -245,10 +272,7 @@ func UpdateUserHandler(w http.ResponseWriter, r *http.Request) {
 	err := server.UpdateUser(username, password, email, role, status, avatarPath, numId)
 	if err != nil {
 		middleware.OtherLog("更新用户失败")
-		json.NewEncoder(w).Encode(map[string]interface{}{
-			"success": false,
-			"message": "更新用户失败: " + err.Error(),
-		})
+		utils.ReturnJson(w, false, "更新用户失败", http.StatusBadRequest)
 		return
 	}
 
@@ -264,7 +288,7 @@ func UpdateUserHandler(w http.ResponseWriter, r *http.Request) {
 func CheckInfo(w http.ResponseWriter, r *http.Request, username, password, email string, id string) (string, string) {
 	// 验证必填字段username，email
 	if username == "" || email == "" {
-		ReturnJson(w, false, "用户名和邮箱是必填项")
+		utils.ReturnJson(w, false, "用户名和邮箱是必填项", http.StatusBadRequest)
 		return "", ""
 	}
 
@@ -272,13 +296,13 @@ func CheckInfo(w http.ResponseWriter, r *http.Request, username, password, email
 	if id != "" {
 		numID, _ := strconv.Atoi(id)
 		if ok, _ := server.CheckUsernameExistsExcludingCurrent(username, numID); ok {
-			ReturnJson(w, false, "用户名已被其他用户使用")
+			utils.ReturnJson(w, false, "用户名已被其他用户使用", http.StatusBadRequest)
 			return "", ""
 		}
 	} else {
 		// 新建用户时检查用户名是否已存在
 		if ok, _ := server.CheckUsernameExists(username); ok {
-			ReturnJson(w, false, "用户名已存在")
+			utils.ReturnJson(w, false, "用户名已存在", http.StatusBadRequest)
 			return "", ""
 		}
 	}
@@ -288,7 +312,7 @@ func CheckInfo(w http.ResponseWriter, r *http.Request, username, password, email
 		hashedPassword, err := utils.HashedPassword(password)
 		password = string(hashedPassword)
 		if err != nil {
-			ReturnJson(w, false, "用户名已存在")
+			utils.ReturnJson(w, false, "用户名已存在", http.StatusBadRequest)
 			return "", ""
 		}
 	}
@@ -308,13 +332,13 @@ func CheckInfo(w http.ResponseWriter, r *http.Request, username, password, email
 		//获取文件格式
 		fileType := header.Header.Get("Content-Type")
 		if !allowedTypes[fileType] {
-			ReturnJson(w, false, "只有jpg，png格式的图片可以当头像")
+			utils.ReturnJson(w, false, "只有jpg，png格式的图片可以当头像", http.StatusBadRequest)
 			return "", ""
 		}
 
 		// 限制文件大小 (2MB)
 		if header.Size > 2<<20 {
-			ReturnJson(w, false, "图片文件超过2MB了")
+			utils.ReturnJson(w, false, "图片文件超过2MB了", http.StatusBadRequest)
 			return "", ""
 		}
 
@@ -323,19 +347,19 @@ func CheckInfo(w http.ResponseWriter, r *http.Request, username, password, email
 		ext := filepath.Ext(header.Filename)
 		//拼接用户名时间为头像文件名
 		newFilename := fmt.Sprintf("%s_%d%s", username, time.Now().UnixNano(), ext)
-		avatarPath = filepath.Join("static", newFilename)
+		avatarPath = filepath.Join("static/avatar", newFilename)
 
 		// 创建目标文件
 		dst, err := os.Create(avatarPath)
 		if err != nil {
-			ReturnJson(w, false, "创建文件失败")
+			utils.ReturnJson(w, false, "创建文件失败", http.StatusInternalServerError)
 			return "", ""
 		}
 		defer dst.Close()
 
 		// 复制文件内容
 		if _, err := io.Copy(dst, file); err != nil {
-			ReturnJson(w, false, "保存头像文件失败")
+			utils.ReturnJson(w, false, "保存头像文件失败", http.StatusInternalServerError)
 			return "", ""
 		}
 
@@ -344,13 +368,4 @@ func CheckInfo(w http.ResponseWriter, r *http.Request, username, password, email
 	}
 
 	return password, avatarPath
-}
-
-// ReturnJson 返回json响应
-func ReturnJson(w http.ResponseWriter, success bool, message string) {
-	w.WriteHeader(http.StatusInternalServerError)
-	json.NewEncoder(w).Encode(map[string]interface{}{
-		"success": success,
-		"message": message,
-	})
 }

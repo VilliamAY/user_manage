@@ -45,7 +45,7 @@
   <div class="flex items-center gap-4">
    <button class="p-2 hover:bg-gray-100 rounded-full"><i data-feather="bell"></i></button>
    <div class="flex items-center gap-2">
-    <img src="../static/1.jpg" class="w-8 h-8 rounded-full">
+    <img src="{{.Avatar}}" class="w-8 h-8 rounded-full">
     <button onclick="logout()" class="text-red-600 hover:text-red-700 flex items-center gap-1">
      <i data-feather="log-out" class="w-5 h-5"></i><span class="hidden sm:inline">退出系统</span>
     </button>
@@ -61,42 +61,42 @@
     <div class="flex justify-between items-center">
      <div>
       <p class="text-gray-500 text-sm">注册用户</p>
-      <p class="text-3xl font-bold mt-2">{{.TotalUsers}}</p>
+      <p class="text-3xl font-bold mt-2">{{.Stats.TotalUsers}}</p>
      </div>
      <div class="bg-blue-100 p-3 rounded-full">
       <i data-feather="user-plus" class="w-6 h-6 text-blue-600"></i>
      </div>
     </div>
     <div class="mt-4 text-sm">
-     <span class="text-green-500">↑ {{.UserGrowthRate}}%</span> 上月增长
+     <span class="text-green-500">↑ {{.Stats.UserGrowthRate}}%</span> 上月增长
     </div>
    </div>
    <div class="bg-white p-6 rounded-xl shadow">
     <div class="flex justify-between items-center">
      <div>
       <p class="text-gray-500 text-sm">本月访问</p>
-      <p class="text-3xl font-bold mt-2">{{.MonthLogins}}</p>
+      <p class="text-3xl font-bold mt-2">{{.Stats.MonthLogins}}</p>
      </div>
      <div class="bg-green-100 p-3 rounded-full">
       <i data-feather="activity" class="w-6 h-6 text-green-600"></i>
      </div>
     </div>
     <div class="mt-4 text-sm">
-     <span class="text-green-500">↑ {{.LoginGrowthRate}}%</span> 上月增长
+     <span class="text-green-500">↑ {{.Stats.LoginGrowthRate}}%</span> 上月增长
     </div>
    </div>
    <div class="bg-white p-6 rounded-xl shadow">
     <div class="flex justify-between items-center">
      <div>
       <p class="text-gray-500 text-sm">注销用户</p>
-      <p class="text-3xl font-bold mt-2">{{.DeactivatedUsers}}</p>
+      <p class="text-3xl font-bold mt-2">{{.Stats.DeactivatedUsers}}</p>
      </div>
      <div class="bg-red-100 p-3 rounded-full">
       <i data-feather="user-x" class="w-6 h-6 text-red-600"></i>
      </div>
     </div>
     <div class="mt-4 text-sm">
-     <span class="text-red-500">↑ {{.DeactivatedRate}}%</span> 上月增长
+     <span class="text-red-500">↑ {{.Stats.DeactivatedRate}}%</span> 上月增长
     </div>
    </div>
   </div>
@@ -119,6 +119,20 @@
  feather.replace();
 
  let currentChart;
+
+ function logout() {
+  if (confirm('确定要退出系统吗？')) {
+   fetch('/logout', {
+    method: 'POST'
+   }).then(response => {
+    if (response.ok) {
+     // 刷新页面
+     window.location.reload(true);
+     window.location.href = '/login';
+    }
+   });
+  }
+ }
 
  // 初始化趋势图
  function renderChart(trend) {
@@ -198,7 +212,7 @@
   const btn30Days = document.getElementById('btn30Days');
 
   // 后端传递的数据存储在全局变量 `allTrendData` 中
-  const allTrendData = {{.LoginTrend}};
+  const allTrendData = {{.Stats.LoginTrend}};
   console.log(allTrendData,'1111111')
 
   // 默认渲染7天数据

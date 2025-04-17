@@ -27,6 +27,7 @@ func main() {
 	dynamicMux := http.NewServeMux()
 	dynamicMux.HandleFunc("/login", handler.Login)
 	dynamicMux.HandleFunc("/register", handler.Register)
+	dynamicMux.HandleFunc("/logout", handler.Logout)
 	dynamicMux.HandleFunc("/index", middleware.AuthMiddleware(handler.Index))
 	dynamicMux.HandleFunc("/userList", middleware.AuthMiddleware(handler.UserList))
 	dynamicMux.HandleFunc("/api/users/delete/{id}", middleware.AuthMiddleware(handler.DeleteUserHandler))

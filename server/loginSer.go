@@ -86,3 +86,27 @@ func UpdateLastLogin(username string) error {
 	}
 	return err
 }
+
+// GetUser 获取当前用户
+func GetUser(username string) constant.User {
+	var user constant.User
+	user.Username = username
+	query := "SELECT role,status,avatar FROM users WHERE username = ?"
+	middleware.LogDBOperation("执行查询", query, username)
+	err := constant.DB.QueryRow(query, username).Scan(&user.Role, &user.Status, &user.Avatar)
+	if err != nil {
+		return constant.User{}
+	}
+	return user
+}
+
+// UpdateLogins 更新今日访问人数
+func UpdateLogins() error {
+	today := time.Now().Format("2006-01-02")
+	_, err := constant.DB.Exec(`
+        INSERT INTO login_stats (login_date, login_count)
+        VALUES (?, 1)
+        ON DUPLICATE KEY UPDATE login_count = login_count + 1
+    `, today)
+	return err
+}

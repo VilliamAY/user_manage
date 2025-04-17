@@ -49,22 +49,6 @@ func HashedPassword(password string) ([]byte, error) {
 	return hashedPassword, nil
 }
 
-// RespondWithJSON 返回json响应
-func RespondWithJSON(w http.ResponseWriter, statusCode int, payload interface{}) {
-	// 将数据转换为JSON
-	response, err := json.Marshal(payload)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("无法编码响应数据"))
-		return
-	}
-
-	// 设置响应头
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(statusCode)
-	w.Write(response)
-}
-
 // UpdateNewUsersStat 更新 login_stats 表中的 new_users 字段
 func UpdateNewUsersStat() error {
 	// 获取今天的日期
@@ -121,4 +105,23 @@ func UpdateDeletedUsersStat() error {
 	}
 
 	return nil
+}
+
+func CheckRole(w http.ResponseWriter, r *http.Request) bool {
+	session, _ := constant.Store.Get(r, "session-name")
+	nowRole, ok := session.Values["role"].(string)
+	if !ok || nowRole != "管理员" {
+		http.Error(w, "没有权限进行此操作", http.StatusForbidden)
+		return false
+	}
+	return true
+}
+
+// ReturnJson 返回json响应
+func ReturnJson(w http.ResponseWriter, success bool, message string, n int) {
+	w.WriteHeader(n)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"success": success,
+		"message": message,
+	})
 }

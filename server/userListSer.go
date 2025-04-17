@@ -5,6 +5,8 @@ import (
 	"exam/middleware"
 	"fmt"
 	"golang.org/x/crypto/bcrypt"
+	"os"
+	"path/filepath"
 	"strings"
 	"time"
 )
@@ -167,6 +169,14 @@ func CreateUser(username, password, email, role, status, avatar string) error {
 
 // DeleteUser 管理员删除用户
 func DeleteUser(id int) error {
+	var avatarPath string
+	newQuery := "select avatar from users where id = ?"
+	middleware.LogDBOperation("执行查询", newQuery, id)
+	err := constant.DB.QueryRow(newQuery, id).Scan(&avatarPath)
+	if err != nil {
+		return err
+	}
+
 	query := "delete from users where id = ?"
 	middleware.LogDBOperation("Preparing query", query, id)
 	stmt, err := constant.DB.Prepare(query)
@@ -190,6 +200,21 @@ func DeleteUser(id int) error {
 
 	// 删除用户头像
 	// 非默认头像才删除
+	defaultAvatarPath := "/static/1.jpg"
+	if avatarPath != defaultAvatarPath {
+		// 去掉路径前面的斜杠
+		if avatarPath[0] == '/' {
+			avatarPath = avatarPath[1:]
+		}
+		// 转换为实际文件路径
+		realPath := filepath.Join("..", avatarPath)
+		err = os.Remove(realPath)
+		if err != nil {
+			middleware.LogDBOperation(fmt.Sprintf("Failed to delete avatar file: %s", err.Error()), query)
+		} else {
+			middleware.LogDBOperation("Avatar file deleted successfully", query)
+		}
+	}
 
 	return nil
 }
@@ -250,4 +275,15 @@ func CheckUsernameExistsExcludingCurrent(username string, excludeId int) (bool, 
 		return false, err
 	}
 	return count > 0, nil
+}
+
+func GetUsername(id int) string {
+	var username string
+	query := "SELECT username FROM users WHERE id = ?"
+	middleware.LogDBOperation("执行查询", query, username)
+	err := constant.DB.QueryRow(query, id).Scan(&username)
+	if err != nil {
+		return ""
+	}
+	return username
 }
